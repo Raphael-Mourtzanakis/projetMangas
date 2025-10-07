@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Services\MangaService;
+use App\Models\Manga;
 use Exception;
 use Illuminate\Http\Request;
 
 class MangaController extends Controller
 {
-    public function listMangas()
-    {
+    public function listMangas() {
         try {
             $service = new MangaService();
             $mangas = $service->getListMangas();

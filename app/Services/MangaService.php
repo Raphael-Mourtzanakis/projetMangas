@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Services;
+
 use App\Models\Manga;
 use Exception;
 use Illuminate\Database\QueryException;

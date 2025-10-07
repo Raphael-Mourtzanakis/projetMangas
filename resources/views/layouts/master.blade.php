@@ -31,7 +31,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('/listMangas') }}">
+                                <a class="dropdown-item" href="{{ route('listMangas') }}">
                                     Tous
                                 </a>
                             </li>
