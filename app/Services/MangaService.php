@@ -11,7 +11,7 @@ class MangaService {
     public function getListMangas() {
         try {
             $liste = Manga::query()
-            ->select('manga.*', 'genre.lib_genre', 'dessinateur.nom_dessinateur', 'scenariste.nom_scenariste')
+            ->select('manga.*', 'genre.lib_genre', 'dessinateur.nom_dessinateur', 'dessinateur.prenom_dessinateur', 'scenariste.nom_scenariste', 'scenariste.prenom_scenariste')
             ->join('genre', 'genre.id_genre', '=', 'manga.id_genre')
             ->join('dessinateur', 'dessinateur.id_dessinateur', '=', 'manga.id_dessinateur')
             ->join('scenariste', 'scenariste.id_scenariste', '=', 'manga.id_scenariste')
