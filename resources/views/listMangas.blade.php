@@ -12,6 +12,7 @@
                 <th>Dessinateurs</th>
                 <th>Scénaristes</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
 
@@ -24,9 +25,8 @@
                 <td>{{$ligne->lib_genre}}</td>
                 <td>{{$ligne->nom_dessinateur}} {{$ligne->prenom_dessinateur}}</td>
                 <td>{{$ligne->nom_scenariste}} {{$ligne->prenom_scenariste}}</td>
-                <td>
-                    <a onclick="return confirm('Supprimer ce manga ?')" href="{{url('/')}}"> <i class="bi bi-trash"></i> </a>
-                </td>
+                <td><a href="{{url('/')}}"> <i class="bi bi-pencil"></i> </a></td> <!-- // Modifier le manga -->
+                <td><a onclick="return confirm('Supprimer ce manga ?')" href="{{url('/')}}"> <i class="bi bi-trash"></i> </a> <!-- Supprimer le manga -->
             </tr>
             @endforeach
         </tbody>
