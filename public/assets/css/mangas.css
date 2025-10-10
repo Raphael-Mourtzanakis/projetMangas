@@ -8,3 +8,10 @@ h1
         text-align: center;
         margin-top: 15px;
     }
+.bi-trash
+    {
+        color: #d61a1a;
+        /*padding: 3px 6px;
+        background: #ffebeb;
+        border-radius: 100px;*/
+    }
