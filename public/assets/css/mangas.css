@@ -9,16 +9,41 @@ h1
         margin-top: 15px;
     }
 
+.bi-trash, .bi-pencil
+    {
+        padding: 5px 8px;
+        margin: -5px -8px;
+        transition : 0.15s ease;
+    }
+.bi-trash:hover, .bi-pencil:hover
+    {
+        border-radius: 100px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+    }
+
 .bi-trash
     {
         color: #d61a1a;
-        /*padding: 3px 6px;
+    }
+.bi-trash:hover
+    {
         background: #ffebeb;
-        border-radius: 100px;*/
+    }
+.bi-trash:active
+    {
+        background: #e5d5d5;
     }
 .bi-pencil
     {
         color: #0088ff;
+    }
+.bi-pencil:hover
+    {
+        background: #e3f0ff;
+    }
+.bi-pencil:active
+    {
+        background: #c9d5e4;
     }
 
 .img-thumbnail

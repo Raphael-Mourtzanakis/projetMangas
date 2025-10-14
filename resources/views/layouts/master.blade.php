@@ -22,9 +22,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">Item</a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Lister
@@ -42,9 +40,16 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/addManga') }}">Ajouter</a>
+                    </li>
+
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Inactif</a>
                     </li>
+                    -->
                 </ul>
             </div>
         </div>
