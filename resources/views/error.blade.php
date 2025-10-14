@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger db-error" role="alert">
         <p>Désolé une erreur technique empêche le bon fonctionnement du site !</p>
         @if (is_a($exception,"\App\Exceptions\UserException"))
             <p>{{ $exception->getUserMessage() }}</p>
