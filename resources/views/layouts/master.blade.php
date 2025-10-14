@@ -42,7 +42,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/addManga') }}">Ajouter</a>
+                        <a class="nav-link" href="{{ route('addManga') }}">Ajouter</a>
                     </li>
 
                     <!--

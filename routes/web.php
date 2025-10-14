@@ -10,5 +10,5 @@ Route::get('/', function () {
 Route::get('/listerMangas', [MangaController::class, 'listMangas'])
     ->name('listMangas');
 
-Route::get('/ajouterMangas', [MangaController::class, 'addMangas'])
-    ->name('addMangas');
+Route::get('/ajouterManga', [MangaController::class, 'addManga'])
+    ->name('addManga');
