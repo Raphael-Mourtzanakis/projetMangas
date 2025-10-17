@@ -41,4 +41,56 @@ class MangaController extends Controller
             return view('error', compact('exception'));
         }
     }
+
+    public function validManga(Request $request) {
+        try {
+            $service = new MangaService();
+            $manga = new Manga();
+
+            $manga->id_manga = $request->input("id");
+            $manga->titre = $request->input("titre");
+            $manga->id_genre = $request->input("genre");
+            $manga->id_dessinateur = $request->input("dessinateur");
+            $manga->id_scenariste = $request->input("scenariste");
+            $manga->prix = $request->input("prix");
+
+            $couverture = $request->file("couverture");
+            if ($couverture) {
+                $manga->couverture = $couverture->getClientOriginalName();
+                $couverture->move(public_path() . '\assets\images', $manga->couverture);
+            } else {
+                $manga->couverture =  "erreur.png";
+            }
+            $service->saveManga($manga);
+            return redirect("/listerMangas");
+        } catch (Exception $exception) {
+            return view('error', compact('exception'));
+        }
+    }
+
+    public function editManga($id) {
+        try {
+            $service = new MangaService();
+            $genresService = new GenreService();
+            $dessinateursService = new DessinateurService();
+            $scenaristesService = new ScenaristeService();
+            $genres = $genresService->getListGenres();
+            $dessinateurs = $dessinateursService->getListDessinateurs();
+            $scenaristes = $scenaristesService->getListScenaristes();
+            $manga = $service->getUnManga($id);
+            return view('formManga', compact('manga', 'genres', 'dessinateurs', 'scenaristes'));
+        } catch (Exception $exception) {
+            return view('error', compact('exception'));
+        }
+    }
+
+    public function removeManga($id) {
+        try {
+            $service = new MangaService();
+            $service->deleteManga($id);
+            return redirect("/listerMangas");
+        } catch (Exception $exception) {
+            return view('error', compact('exception'));
+        }
+    }
 }
