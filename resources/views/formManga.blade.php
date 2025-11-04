@@ -5,7 +5,7 @@
         {{ csrf_field() }}
 
         <h1>@if (!$manga->id_manga) Ajout @else Modification @endif d'un Manga</h1>
-        @if ($manga->id_manga) <input type="hidden" value="{{$manga->id}}" name="id" required>@endif
+        <input type="hidden" value="{{$manga->id_manga}}" name="id" required>
 
         <div class="col-md-12 card card-body bg-light">
             <div class="form-group">

@@ -15,7 +15,25 @@ class MangaService {
             ->join('genre', 'genre.id_genre', '=', 'manga.id_genre')
             ->join('dessinateur', 'dessinateur.id_dessinateur', '=', 'manga.id_dessinateur')
             ->join('scenariste', 'scenariste.id_scenariste', '=', 'manga.id_scenariste')
+            ->orderByRaw('manga.titre ASC')
             ->get();
+
+            return $liste;
+        } catch (QueryException $exception) {
+            $userMessage = "Impossible d'accéder à la base de données.";
+            throw new UserException($userMessage, $exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getListMangasParGenre($genre_id) {
+        try {
+            $liste = Manga::query()
+                ->select('manga.*', 'genre.lib_genre', 'dessinateur.nom_dessinateur', 'dessinateur.prenom_dessinateur', 'scenariste.nom_scenariste', 'scenariste.prenom_scenariste')
+                ->join('dessinateur', 'dessinateur.id_dessinateur', '=', 'manga.id_dessinateur')
+                ->join('scenariste', 'scenariste.id_scenariste', '=', 'manga.id_scenariste')
+                ->where('genre.id_genre','=',$genre_id)
+                ->orderByRaw('manga.titre ASC')
+                ->get();
 
             return $liste;
         } catch (QueryException $exception) {

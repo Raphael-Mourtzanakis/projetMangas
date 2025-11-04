@@ -34,7 +34,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('listMangas') }}">
+                                <a class="dropdown-item" href="{{ route('listMangasParGenre') }}">
                                     Par genre
                                 </a>
                             </li>

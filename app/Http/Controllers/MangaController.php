@@ -21,7 +21,36 @@ class MangaController extends Controller
                     $manga->couverture = 'erreur.png';
                 }
             }
-            return view('listMangas', compact('mangas'));
+            $genre = "";
+            return view('listMangas', compact('mangas','genre'));
+        } catch (Exception $exception) {
+            return view('error', compact('exception'));
+        }
+    }
+
+    public function listMangasParGenre() {
+        try {
+            $service = new GenreService();
+            $genres = $service->getListGenres();
+            return view('formListGenres', compact('genres'));
+        } catch (Exception $exception) {
+            return view('error', compact('exception'));
+        }
+    }
+
+    public function listMangasParLeGenre($genre_id)
+    {
+        try {
+            $service = new MangaService();
+            $mangas = $service->getListMangasParGenre($genre_id);
+            $service = new GenreService();
+            $genre = $service->getUnGenre($genre_id);
+            foreach ($mangas as $manga) {
+                if (!file_exists('assets\\images\\' . $manga->couverture)) {
+                    $manga->couverture = 'erreur.png';
+                }
+            }
+            return view('listMangasParLeGenre', compact('mangas'));
         } catch (Exception $exception) {
             return view('error', compact('exception'));
         }
@@ -44,10 +73,15 @@ class MangaController extends Controller
 
     public function validManga(Request $request) {
         try {
-            $service = new MangaService();
-            $manga = new Manga();
+            $id = $request->input("id");
 
-            $manga->id_manga = $request->input("id");
+            $service = new MangaService();
+            if ($id) {
+                $manga = $service->getUnManga($id);
+            } else {
+                $manga = new Manga();
+            }
+
             $manga->titre = $request->input("titre");
             $manga->id_genre = $request->input("genre");
             $manga->id_dessinateur = $request->input("dessinateur");
@@ -58,8 +92,36 @@ class MangaController extends Controller
             if ($couverture) {
                 $manga->couverture = $couverture->getClientOriginalName();
                 $couverture->move(public_path() . '\assets\images', $manga->couverture);
+            }
+            $service->saveManga($manga);
+            return redirect("/listerMangas");
+        } catch (Exception $exception) {
+            return view('error', compact('exception'));
+        }
+    }
+
+    public function validListMangaParGenre(Request $request) {
+        // Code à modifier et compléter
+        try {
+            $id = $request->input("id");
+
+            $service = new MangaService();
+            if ($id) {
+                $manga = $service->getUnManga($id);
             } else {
-                $manga->couverture =  "erreur.png";
+                $manga = new Manga();
+            }
+
+            $manga->titre = $request->input("titre");
+            $manga->id_genre = $request->input("genre");
+            $manga->id_dessinateur = $request->input("dessinateur");
+            $manga->id_scenariste = $request->input("scenariste");
+            $manga->prix = $request->input("prix");
+
+            $couverture = $request->file("couverture");
+            if ($couverture) {
+                $manga->couverture = $couverture->getClientOriginalName();
+                $couverture->move(public_path() . '\assets\images', $manga->couverture);
             }
             $service->saveManga($manga);
             return redirect("/listerMangas");

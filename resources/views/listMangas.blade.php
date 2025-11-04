@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Liste des Mangas</h1>
+    <h1>Liste des Mangas @if ($genre) par le Genre {{$genre->lib_genre}}@endif </h1>
 
     <table class="table table-bordered table-striped" style="margin-bottom: 50px;">
         <thead class="table table-bordered table-striped">
@@ -8,7 +8,7 @@
                 <th>Couverture</th>
                 <th>Titre</th>
                 <th>Prix</th>
-                <th>Genre</th>
+                @if (!$genre) <th>Genre</th>@endif
                 <th>Dessinateur</th>
                 <th>Scénariste</th>
                 <th></th>
@@ -22,7 +22,7 @@
                 <td><img class="img-thumbnail" src="{{ url('/assets/images/'.$ligne->couverture) }}"></td>
                 <td>{{$ligne->titre}}</td>
                 <td>{{$ligne->prix}} €</td>
-                <td>{{$ligne->lib_genre}}</td>
+                @if (!$genre) <td>{{$ligne->lib_genre}}</td>@endif
                 <td>{{$ligne->nom_dessinateur}} {{$ligne->prenom_dessinateur}}</td>
                 <td>{{$ligne->nom_scenariste}} {{$ligne->prenom_scenariste}}</td>
                 <td><a href="{{url('/modifierManga/'.$ligne->id_manga)}}"> <i class="bi bi-pencil"></i> </a></td> <!-- // Modifier le manga -->
