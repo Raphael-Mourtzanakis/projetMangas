@@ -38,26 +38,6 @@ class MangaController extends Controller
         }
     }
 
-    public function listMangasParLeGenre(Request $request)
-    {
-        try {
-            $genre_id = $request->input("genre");
-
-            $service = new MangaService();
-            $mangas = $service->getListMangasParGenre($genre_id);
-            $service = new GenreService();
-            $genre = $service->getUnGenre($genre_id);
-            foreach ($mangas as $manga) {
-                if (!file_exists('assets\\images\\' . $manga->couverture)) {
-                    $manga->couverture = 'erreur.png';
-                }
-            }
-            return view('listerMangas', compact('mangas','genre'));
-        } catch (Exception $exception) {
-            return view('error', compact('exception'));
-        }
-    }
-
     public function addManga() {
         try {
             $manga =  new Manga();
@@ -102,9 +82,9 @@ class MangaController extends Controller
         }
     }
 
-    public function validListMangaParGenre(Request $request) {
+    public function listMangasParLeGenre(Request $request) {
         try {
-            $id_genre = $request->input("genre");
+            $id_genre =  $request->input("genre");
 
             $service = new MangaService();
             $mangas = $service->getListMangasParGenre($id_genre);

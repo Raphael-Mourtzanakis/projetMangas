@@ -3,7 +3,7 @@
 @section('content')
     <h1>Liste des Mangas par Genre</h1>
 
-    <form method="POST" action="{{route('validListMangaParGenre')}}">
+    <form method="POST" action="{{route('listMangasParLeGenre')}}">
         {{ csrf_field() }}
 
         <div class="col-md-12 card card-body bg-light">

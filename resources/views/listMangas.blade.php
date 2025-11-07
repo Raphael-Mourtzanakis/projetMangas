@@ -3,7 +3,7 @@
     <h1>Liste des Mangas @if ($genre) par le Genre {{$genre->lib_genre}}@endif </h1>
 
     @if ($genre)
-        <form method="POST" action="{{route('validListMangaParGenre')}}" class="list-form">
+        <form method="POST" action="{{route('listMangasParLeGenre')}}" class="list-form">
             {{ csrf_field() }}
 
             <div class="col-md-12 card card-body bg-light">

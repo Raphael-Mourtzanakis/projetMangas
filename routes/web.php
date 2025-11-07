@@ -12,8 +12,6 @@ Route::get('/listerMangas', [MangaController::class, 'listMangas'])
 
 Route::get('/listerMangasParGenre', [MangaController::class, 'listMangasParGenre'])
     ->name('listMangasParGenre');
-Route::post('/listerMangasParLeGenre', [MangaController::class, 'listMangasParLeGenre'])
-    ->name('listMangasParLeGenre');
 
 Route::get('/ajouterManga', [MangaController::class, 'addManga'])
     ->name('addManga');
@@ -21,8 +19,8 @@ Route::get('/ajouterManga', [MangaController::class, 'addManga'])
 Route::post('/validerManga', [MangaController::class, 'validManga'])
     ->name('validManga');
 
-Route::post('/validerListMangaParGenre', [MangaController::class, 'validListMangaParGenre'])
-    ->name('validListMangaParGenre');
+Route::post('/listerMangasParLeGenre', [MangaController::class, 'listMangasParLeGenre'])
+    ->name('listMangasParLeGenre');
 
 Route::get('/modifierManga/{id}', [MangaController::class, 'editManga'])
     ->name('editManga');
