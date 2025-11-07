@@ -38,9 +38,11 @@ class MangaController extends Controller
         }
     }
 
-    public function listMangasParLeGenre($genre_id)
+    public function listMangasParLeGenre(Request $request)
     {
         try {
+            $genre_id = $request->input("genre");
+
             $service = new MangaService();
             $mangas = $service->getListMangasParGenre($genre_id);
             $service = new GenreService();
@@ -50,7 +52,7 @@ class MangaController extends Controller
                     $manga->couverture = 'erreur.png';
                 }
             }
-            return view('listMangasParLeGenre', compact('mangas'));
+            return view('listerMangas', compact('mangas','genre'));
         } catch (Exception $exception) {
             return view('error', compact('exception'));
         }
@@ -101,30 +103,16 @@ class MangaController extends Controller
     }
 
     public function validListMangaParGenre(Request $request) {
-        // Code à modifier et compléter
         try {
-            $id = $request->input("id");
+            $id_genre = $request->input("genre");
 
             $service = new MangaService();
-            if ($id) {
-                $manga = $service->getUnManga($id);
-            } else {
-                $manga = new Manga();
-            }
+            $mangas = $service->getListMangasParGenre($id_genre);
+            $service = new GenreService();
+            $genre = $service->getUnGenre($id_genre);
+            $genres = $service->getListGenres();
 
-            $manga->titre = $request->input("titre");
-            $manga->id_genre = $request->input("genre");
-            $manga->id_dessinateur = $request->input("dessinateur");
-            $manga->id_scenariste = $request->input("scenariste");
-            $manga->prix = $request->input("prix");
-
-            $couverture = $request->file("couverture");
-            if ($couverture) {
-                $manga->couverture = $couverture->getClientOriginalName();
-                $couverture->move(public_path() . '\assets\images', $manga->couverture);
-            }
-            $service->saveManga($manga);
-            return redirect("/listerMangas");
+            return view('listMangas', compact('mangas','genre','genres'));
         } catch (Exception $exception) {
             return view('error', compact('exception'));
         }

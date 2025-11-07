@@ -1,11 +1,12 @@
 @extends("layouts.master")
 
 @section('content')
+    <h1>Liste des Mangas par Genre</h1>
+
     <form method="POST" action="{{route('validListMangaParGenre')}}">
         {{ csrf_field() }}
 
-        <h1>Liste des Mangas par Genre</h1>
-
+        <div class="col-md-12 card card-body bg-light">
             <div class="form-group">
                 <label class="col-md-3">Genre : </label>
                 <div class="col-md-6">

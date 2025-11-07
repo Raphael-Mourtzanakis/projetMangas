@@ -1,10 +1,11 @@
 @extends("layouts.master")
 
 @section('content')
+    <h1>@if (!$manga->id_manga) Ajout @else Modification @endif d'un Manga</h1>
+
     <form method="POST" action="{{route('validManga')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
-        <h1>@if (!$manga->id_manga) Ajout @else Modification @endif d'un Manga</h1>
         <input type="hidden" value="{{$manga->id_manga}}" name="id" required>
 
         <div class="col-md-12 card card-body bg-light">

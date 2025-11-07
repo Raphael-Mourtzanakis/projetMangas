@@ -12,7 +12,7 @@ Route::get('/listerMangas', [MangaController::class, 'listMangas'])
 
 Route::get('/listerMangasParGenre', [MangaController::class, 'listMangasParGenre'])
     ->name('listMangasParGenre');
-Route::get('/listerMangasParLeGenre/{genre}', [MangaController::class, 'listMangasParLeGenre'])
+Route::post('/listerMangasParLeGenre', [MangaController::class, 'listMangasParLeGenre'])
     ->name('listMangasParLeGenre');
 
 Route::get('/ajouterManga', [MangaController::class, 'addManga'])
